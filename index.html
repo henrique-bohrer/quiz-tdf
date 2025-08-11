@@ -18,9 +18,20 @@
 
 <body>
 
-  <button id="theme-toggle-btn">
-    <i class="fas fa-moon"></i>
-  </button>
+  <div class="top-bar">
+    <div id="auth-container">
+      <button id="login-btn" class="btn btn-secondary">Login</button>
+      <button id="signup-btn" class="btn btn-secondary">Cadastro</button>
+    </div>
+    <div id="user-info" class="hide">
+      <span id="user-email"></span>
+      <button id="profile-btn" class="btn btn-secondary">Perfil</button>
+      <button id="logout-btn" class="btn btn-secondary">Logout</button>
+    </div>
+    <button id="theme-toggle-btn">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
 
   <div class="container">
     <div class="logo-container">
@@ -39,18 +50,46 @@
 
     <div class="controls">
       <button id="start-btn" class="start-btn btn">Começar</button>
+      <button id="ranking-btn" class="ranking-btn btn">Ranking</button>
       <button id="next-btn" class="next-btn btn hide">Próxima</button>
     </div>
 
   </div>
 
-  <div id="ranking-modal" class="modal-overlay hide">
+  <div id="assessment-modal" class="modal-overlay hide">
     <div class="modal-content">
       <h2>Fim de Jogo!</h2>
       <p id="assessment-text"></p>
       <p>Digite seu nome para salvar no ranking:</p>
       <input type="text" id="player-name-input" placeholder="Seu nome de craque">
       <button id="save-score-btn" class="btn">Salvar Pontuação</button>
+    </div>
+  </div>
+
+  <div id="ranking-modal" class="modal-overlay hide">
+    <div class="modal-content">
+      <h2><i class="fas fa-trophy"></i> Ranking dos Craques</h2>
+      <ol id="ranking-list"></ol>
+      <button id="close-ranking-btn" class="btn">Fechar</button>
+    </div>
+  </div>
+
+  <div id="auth-modal" class="modal-overlay hide">
+    <div class="modal-content">
+      <button id="close-auth-modal-btn" class="close-btn">&times;</button>
+      <div id="auth-modal-content">
+        <!-- O conteúdo do formulário de login/cadastro será injetado aqui pelo JS -->
+      </div>
+    </div>
+  </div>
+
+  <div id="profile-modal" class="modal-overlay hide">
+    <div class="modal-content">
+      <h2><i class="fas fa-user"></i> Meu Perfil</h2>
+      <p><strong>Email:</strong> <span id="profile-email"></span></p>
+      <h3>Meu Histórico de Pontuações:</h3>
+      <ul id="profile-scores-list"></ul>
+      <button id="close-profile-btn" class="btn">Fechar</button>
     </div>
   </div>
 
