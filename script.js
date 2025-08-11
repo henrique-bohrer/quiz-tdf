@@ -81,12 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function startGame() {
-        // Remove qualquer container de avaliação de jogos anteriores
-        const oldAssessment = document.querySelector('.assessment-container');
-        if (oldAssessment) {
-            oldAssessment.remove();
-        }
-
         startButton.classList.add('hide');
         questionContainerElement.classList.remove('hide');
 
@@ -103,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         score = 0;
         shuffledQuestions = allQuestions.sort(() => Math.random() - 0.5);
+        window.shuffledQuestions = shuffledQuestions; // Expor para o script de teste
         currentQuestionIndex = 0;
         setNextQuestion();
     }
@@ -160,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * FUNÇÃO CORRIGIDA: Agora usa os elementos da modal para exibir o resultado.
      */
     function showAssessment() {
+        clearStatusClass(document.body); // Limpa o fundo verde/vermelho
         questionContainerElement.classList.add('hide');
 
         const totalQuestions = shuffledQuestions.length;

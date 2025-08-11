@@ -116,7 +116,8 @@ body {
 
 /* Classe para esconder/mostrar elementos */
 .hide {
-  display: none;
+  display: none !important; /* Garante que o elemento seja escondido */
+  pointer-events: none; /* Garante que não intercepte eventos de clique quando escondido */
 }
 
 .modal-overlay {
