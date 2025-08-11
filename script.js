@@ -315,15 +315,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Lógica da tela de splash
         setTimeout(() => {
             splashScreen.classList.add('fade-out');
-
-            // Remove a tela de splash do DOM após a animação para não interferir
-            splashScreen.addEventListener('transitionend', () => {
-                splashScreen.remove();
-            });
-
-            // Mostra o conteúdo principal
             mainContainer.classList.remove('hide');
             topBar.classList.remove('hide');
+
+            // Remove a tela de splash do DOM após a animação de fade-out (0.5s)
+            setTimeout(() => {
+                splashScreen.remove();
+            }, 500);
 
         }, 2500); // Duração da splash screen
 
