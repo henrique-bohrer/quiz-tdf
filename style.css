@@ -4,7 +4,7 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
 
-/* Variáveis de Cor (incluindo novas cores de apoio) */
+/* Variáveis de Cor (Tema Escuro é o Padrão) */
 :root {
   --cor-amarelo-tdf: #FEEB00;
   --cor-preto: #000000;
@@ -13,16 +13,7 @@
   --cor-erro: #dc3545;
   --cor-destaque-secundaria: #007BFF;
 
-  /* Tema Claro (Padrão) */
-  --cor-fundo: #f0f2f5;
-  --cor-texto: #1c1e21;
-  --cor-caixa: #FFFFFF;
-  --cor-botao-borda: #dcdfe3;
-  --sombra-caixa: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Tema Escuro */
-[data-theme="dark"] {
+  /* Cores do Tema Escuro como Padrão */
   --cor-fundo: #121212;
   --cor-texto: #e4e6eb;
   --cor-caixa: #1e1e1e;
@@ -168,15 +159,7 @@ h2 {
 }
 
 #theme-toggle-btn {
-    background: var(--cor-caixa);
-    border: none;
-    color: var(--cor-texto);
-    font-size: 1.5rem;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: var(--sombra-caixa);
+    display: none; /* Remove o botão de tema */
 }
 
 .btn-secondary {

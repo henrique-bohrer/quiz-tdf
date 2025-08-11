@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionContainerElement = document.getElementById('question-container');
     const questionElement = document.getElementById('question');
     const answerButtonsElement = document.getElementById('answer-buttons');
-    const themeToggleButton = document.getElementById('theme-toggle-btn');
     const body = document.body;
     const rankingBtn = document.getElementById('ranking-btn');
 
@@ -50,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     rankingBtn.addEventListener('click', showRanking);
     closeRankingBtn.addEventListener('click', () => rankingModal.classList.add('hide'));
-    themeToggleButton.addEventListener('click', toggleTheme);
     loginBtn.addEventListener('click', () => showAuthForm(true));
     signupBtn.addEventListener('click', () => showAuthForm(false));
     logoutBtn.addEventListener('click', handleLogout);
@@ -58,25 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     profileBtn.addEventListener('click', showProfile);
     closeProfileBtn.addEventListener('click', () => profileModal.classList.add('hide'));
     closeAssessmentBtn.addEventListener('click', () => assessmentModal.classList.add('hide'));
-
-    // --- LÓGICA DE TEMA ---
-    function toggleTheme() {
-        body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
-        updateThemeIcon();
-        localStorage.setItem('theme', body.dataset.theme);
-    }
-
-    function updateThemeIcon() {
-        const icon = themeToggleButton.querySelector('i');
-        icon.classList.toggle('fa-moon', body.dataset.theme !== 'dark');
-        icon.classList.toggle('fa-sun', body.dataset.theme === 'dark');
-    }
-
-    function applyInitialTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        body.dataset.theme = savedTheme;
-        updateThemeIcon();
-    }
 
     // --- LÓGICA DO QUIZ ---
     async function startGame() {
@@ -150,15 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (correct) {
             score++;
-            selectedButton.classList.add('correct');
-        } else {
-            selectedButton.classList.add('wrong');
         }
 
+        setStatusClass(body, correct); // Aplica a classe de cor de fundo
         Array.from(answerButtonsElement.children).forEach(button => {
-            if (button.dataset.correct === 'true') {
-                button.classList.add('correct');
-            }
+            setStatusClass(button, button.dataset.correct === 'true'); // Aplica classe e animação
             button.disabled = true;
         });
 
@@ -330,5 +305,22 @@ document.addEventListener('DOMContentLoaded', () => {
         updateUserUI(session?.user);
     });
 
-    applyInitialTheme();
+    // --- INICIALIZAÇÃO ---
+    // Define o tema escuro como padrão no carregamento
+    body.dataset.theme = 'dark';
+
+    // --- FUNÇÕES AUXILIARES DE ESTILO ---
+    function setStatusClass(element, correct) {
+        clearStatusClass(element);
+        if (correct) {
+            element.classList.add('correct');
+        } else {
+            element.classList.add('wrong');
+        }
+    }
+
+    function clearStatusClass(element) {
+        element.classList.remove('correct');
+        element.classList.remove('wrong');
+    }
 });
