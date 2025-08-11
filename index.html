@@ -5,12 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="css/all.min.css">
-
   <link rel="stylesheet" href="style.css">
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script src="script.js" defer></script>
 
   <title>Quiz - Trilha do Futebol</title>
@@ -40,12 +42,7 @@
 
     <div id="question-container" class="quiz-box hide">
       <div id="question" class="question">Pergunta</div>
-      <div id="answer-buttons" class="btn-grid">
-        <button class="btn">Resposta 1</button>
-        <button class="btn">Resposta 2</button>
-        <button class="btn">Resposta 3</button>
-        <button class="btn">Resposta 4</button>
-      </div>
+      <div id="answer-buttons" class="btn-grid"></div>
     </div>
 
     <div class="controls">
@@ -53,19 +50,21 @@
       <button id="ranking-btn" class="ranking-btn btn">Ranking</button>
       <button id="next-btn" class="next-btn btn hide">Próxima</button>
     </div>
-
   </div>
 
+  <!-- Modal para mostrar o resultado e pedir para salvar/logar -->
   <div id="assessment-modal" class="modal-overlay hide">
     <div class="modal-content">
       <h2>Fim de Jogo!</h2>
       <p id="assessment-text"></p>
-      <p>Digite seu nome para salvar no ranking:</p>
-      <input type="text" id="player-name-input" placeholder="Seu nome de craque">
-      <button id="save-score-btn" class="btn">Salvar Pontuação</button>
+      <div id="assessment-actions">
+        <!-- Conteúdo dinâmico aqui: ou mensagem de salvo, ou botões de login/cadastro -->
+      </div>
+      <button id="close-assessment-btn" class="btn">Fechar</button>
     </div>
   </div>
 
+  <!-- Modal para mostrar o Ranking -->
   <div id="ranking-modal" class="modal-overlay hide">
     <div class="modal-content">
       <h2><i class="fas fa-trophy"></i> Ranking dos Craques</h2>
@@ -74,22 +73,22 @@
     </div>
   </div>
 
+  <!-- Modal para Login/Cadastro -->
   <div id="auth-modal" class="modal-overlay hide">
     <div class="modal-content">
       <button id="close-auth-modal-btn" class="close-btn">&times;</button>
-      <div id="auth-modal-content">
-        <!-- O conteúdo do formulário de login/cadastro será injetado aqui pelo JS -->
-      </div>
+      <div id="auth-modal-content"></div>
     </div>
   </div>
 
+  <!-- Modal para Perfil do Usuário -->
   <div id="profile-modal" class="modal-overlay hide">
     <div class="modal-content">
+      <button id="close-profile-btn" class="close-btn">&times;</button>
       <h2><i class="fas fa-user"></i> Meu Perfil</h2>
       <p><strong>Email:</strong> <span id="profile-email"></span></p>
       <h3>Meu Histórico de Pontuações:</h3>
       <ul id="profile-scores-list"></ul>
-      <button id="close-profile-btn" class="btn">Fechar</button>
     </div>
   </div>
 
