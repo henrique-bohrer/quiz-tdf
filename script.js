@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logout-btn');
     const profileBtn = document.getElementById('profile-btn');
 
+    // Splash Screen
+    const splashScreen = document.getElementById('splash-screen');
+    const mainContainer = document.querySelector('.container');
+    const topBar = document.querySelector('.top-bar');
+
     let shuffledQuestions, currentQuestionIndex, score;
 
     // --- CONFIGURAÇÃO DO SUPABASE ---
@@ -306,8 +311,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- INICIALIZAÇÃO ---
-    // Define o tema escuro como padrão no carregamento
-    body.dataset.theme = 'dark';
+    function initApp() {
+        // Lógica da tela de splash
+        setTimeout(() => {
+            splashScreen.classList.add('fade-out');
+
+            // Remove a tela de splash do DOM após a animação para não interferir
+            splashScreen.addEventListener('transitionend', () => {
+                splashScreen.remove();
+            });
+
+            // Mostra o conteúdo principal
+            mainContainer.classList.remove('hide');
+            topBar.classList.remove('hide');
+
+        }, 2500); // Duração da splash screen
+
+        // Define o tema escuro como padrão
+        body.dataset.theme = 'dark';
+
+        // Verifica o estado do usuário inicial
+        async function checkInitialUser() {
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            updateUserUI(user);
+        }
+        checkInitialUser();
+    }
 
     // --- FUNÇÕES AUXILIARES DE ESTILO ---
     function setStatusClass(element, correct) {
@@ -323,4 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
         element.classList.remove('correct');
         element.classList.remove('wrong');
     }
+
+    initApp(); // Inicia a aplicação
 });

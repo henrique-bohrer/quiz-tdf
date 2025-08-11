@@ -20,7 +20,11 @@
 
 <body>
 
-  <div class="top-bar">
+  <div id="splash-screen">
+    <img src="src/images/logo-TDF-sem-fundo.png" alt="Logo Trilha do Futebol" class="logo-tdf">
+  </div>
+
+  <div class="top-bar hide">
     <div id="auth-container">
       <button id="login-btn" class="btn btn-secondary">Login</button>
       <button id="signup-btn" class="btn btn-secondary">Cadastro</button>
@@ -32,9 +36,12 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container hide">
     <div class="logo-container">
       <img src="src/images/logo-TDF-sem-fundo.png" alt="Logo Trilha do Futebol" class="logo-tdf">
+      <h1>Bem-vindo ao Quiz da Trilha do Futebol!</h1>
+      <p class="intro-text">Teste seus conhecimentos sobre o esporte mais amado do mundo. Responda às perguntas, desafie
+        seus amigos e veja quem é o verdadeiro craque!</p>
     </div>
 
     <div id="question-container" class="quiz-box hide">
