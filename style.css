@@ -1,0 +1,168 @@
+/* Importando uma fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Variáveis de Cor para o Tema Claro (Padrão) */
+:root {
+  --cor-fundo: #FFFFFF;
+  --cor-texto: #000000;
+  --cor-caixa: #f0f0f0;
+  --cor-amarelo-tdf: #FEEB00;
+  --cor-preto: #000000;
+  --cor-sucesso: #28a745;
+  --cor-erro: #dc3545;
+  --cor-botao-borda: #000000;
+}
+
+/* Variáveis de Cor para o Tema Escuro */
+[data-theme="dark"] {
+  --cor-fundo: #000000;
+  --cor-texto: #FFFFFF;
+  --cor-caixa: #2c2c2c;
+  --cor-botao-borda: #FEEB00;
+}
+
+/* Estilos Gerais */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.logo-container {
+  margin-bottom: 2rem;
+}
+
+.logo-tdf {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Caixa principal do Quiz */
+.quiz-box {
+  background-color: var(--cor-caixa);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.question {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Estilo dos Botões */
+.btn {
+  background-color: var(--cor-amarelo-tdf);
+  color: var(--cor-preto);
+  border: 2px solid var(--cor-botao-borda);
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.02);
+}
+
+.btn.correct {
+    background-color: var(--cor-sucesso);
+    color: white;
+}
+
+.btn.wrong {
+    background-color: var(--cor-erro);
+    color: white;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+/* Botão de Tema */
+#theme-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--cor-texto);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Classe para esconder/mostrar elementos */
+.hide {
+  display: none;
+}
+
+.modal-overlay {
+  position: fixed; /* Fixa na tela inteira */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Garante que fique na frente de tudo */
+}
+
+.modal-content {
+  background-color: var(--cor-caixa);
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.modal-content h2 {
+  color: var(--cor-amarelo-tdf);
+  margin-top: 0;
+}
+
+.modal-content p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+#assessment-text {
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+#player-name-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--cor-botao-borda);
+  font-size: 1rem;
+  box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}

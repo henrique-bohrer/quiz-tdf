@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/all.min.css">
+
   <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="script.js" defer></script>
+
+  <title>Quiz - Trilha do Futebol</title>
 </head>
+
 <body>
 
+  <button id="theme-toggle-btn">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <div class="container">
+    <div class="logo-container">
+      <img src="src/images/logo-TDF-sem-fundo.png" alt="Logo Trilha do Futebol" class="logo-tdf">
+    </div>
+
+    <div id="question-container" class="quiz-box hide">
+      <div id="question" class="question">Pergunta</div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn">Resposta 1</button>
+        <button class="btn">Resposta 2</button>
+        <button class="btn">Resposta 3</button>
+        <button class="btn">Resposta 4</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="start-btn" class="start-btn btn">Começar</button>
+      <button id="next-btn" class="next-btn btn hide">Próxima</button>
+    </div>
+
+  </div>
+
+  <div id="ranking-modal" class="modal-overlay hide">
+    <div class="modal-content">
+      <h2>Fim de Jogo!</h2>
+      <p id="assessment-text"></p>
+      <p>Digite seu nome para salvar no ranking:</p>
+      <input type="text" id="player-name-input" placeholder="Seu nome de craque">
+      <button id="save-score-btn" class="btn">Salvar Pontuação</button>
+    </div>
+  </div>
+
 </body>
+
 </html>
