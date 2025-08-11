@@ -1,0 +1,326 @@
+/* PASSO 1: Importando fontes com mais personalidade do Google Fonts.
+  - Bebas Neue: Ótima para títulos, com um estilo forte e condensado.
+  - Roboto: Continua sendo uma excelente escolha para textos corridos.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
+
+/* Variáveis de Cor (Tema Escuro é o Padrão) */
+:root {
+  --cor-amarelo-tdf: #FEEB00;
+  --cor-preto: #000000;
+  --cor-branco: #FFFFFF;
+  --cor-sucesso: #28a745;
+  --cor-erro: #dc3545;
+  --cor-destaque-secundaria: #007BFF;
+
+  /* Cores do Tema Escuro como Padrão */
+  --cor-fundo: #121212;
+  --cor-texto: #e4e6eb;
+  --cor-caixa: #1e1e1e;
+  --cor-botao-borda: var(--cor-amarelo-tdf);
+  --sombra-caixa: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos Gerais e de Fundo */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
+  background-image: radial-gradient(circle, var(--cor-fundo) 0%, var(--cor-preto) 150%);
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.logo-tdf {
+  max-width: 280px;
+  margin-bottom: 2rem;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 1rem auto 2rem auto;
+}
+
+/* Caixa principal do Quiz com mais destaque */
+.quiz-box {
+  background-color: var(--cor-caixa);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: var(--sombra-caixa);
+  transition: background-color 0.3s;
+  border-top: 5px solid var(--cor-amarelo-tdf);
+}
+
+h1, h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--cor-amarelo-tdf);
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+
+.question {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+@media (min-width: 600px) {
+    .btn-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.btn {
+  background-color: var(--cor-amarelo-tdf);
+  color: var(--cor-preto);
+  border: none;
+  padding: 18px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@keyframes shake-wrong {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+@keyframes pop-correct {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.btn.correct {
+    background-color: var(--cor-sucesso);
+    color: white;
+    animation: pop-correct 0.3s ease;
+}
+
+.btn.wrong {
+    background-color: var(--cor-erro);
+    color: white;
+    animation: shake-wrong 0.4s ease;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#user-info span {
+  margin-right: 10px;
+}
+
+#theme-toggle-btn {
+    display: none; /* Remove o botão de tema */
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--cor-botao-borda);
+    color: var(--cor-texto);
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.btn-secondary:hover {
+    background-color: var(--cor-texto);
+    color: var(--cor-fundo);
+}
+
+.hide {
+  display: none !important;
+  pointer-events: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--cor-caixa);
+  padding: 30px 40px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  border-top: 5px solid var(--cor-amarelo-tdf);
+  position: relative;
+}
+
+.modal-content h2 {
+    font-size: 2.5rem;
+}
+
+.modal-content p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+#assessment-text {
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+#assessment-actions .btn {
+    margin: 5px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: var(--cor-texto);
+  cursor: pointer;
+}
+
+#auth-modal-content h2 {
+  margin-bottom: 20px;
+}
+
+#auth-modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 2px solid var(--cor-botao-borda);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#auth-modal-content .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+#auth-modal-content a {
+  color: var(--cor-destaque-secundaria);
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+#auth-error-msg {
+  color: var(--cor-erro);
+  margin-top: 10px;
+  min-height: 1.2em;
+}
+
+#ranking-list, #profile-scores-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid var(--cor-botao-borda);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+#ranking-list li, #profile-scores-list li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--cor-botao-borda);
+  padding-bottom: 10px;
+}
+
+#ranking-list li:last-child, #profile-scores-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- Tela de Splash --- */
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--cor-fundo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  transition: opacity 0.5s ease-out;
+}
+
+#splash-screen.fade-out {
+  opacity: 0;
+}
+
+#splash-screen .logo-tdf {
+  animation: pulse-splash 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-splash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
