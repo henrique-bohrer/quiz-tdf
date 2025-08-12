@@ -7,16 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionElement = document.getElementById('question');
     const answerButtonsElement = document.getElementById('answer-buttons');
     const body = document.body;
-    const rankingBtn = document.getElementById('ranking-btn');
+    const rankingList = document.getElementById('ranking-list-main');
 
     // Modals
     const assessmentModal = document.getElementById('assessment-modal');
     const assessmentText = document.getElementById('assessment-text');
     const assessmentActions = document.getElementById('assessment-actions');
     const closeAssessmentBtn = document.querySelector('#assessment-modal .close-btn');
-    const rankingModal = document.getElementById('ranking-modal');
-    const rankingList = document.getElementById('ranking-list');
-    const closeRankingBtn = document.querySelector('#ranking-modal .close-btn');
     const authModal = document.getElementById('auth-modal');
     const authModalContent = document.getElementById('auth-modal-content');
     const closeAuthModalBtn = document.querySelector('#auth-modal .close-btn');
@@ -53,8 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentQuestionIndex++;
         setNextQuestion();
     });
-    rankingBtn.addEventListener('click', showRanking);
-    closeRankingBtn.addEventListener('click', () => rankingModal.classList.add('hide'));
     loginBtn.addEventListener('click', () => showAuthForm(true));
     signupBtn.addEventListener('click', () => showAuthForm(false));
     logoutBtn.addEventListener('click', handleLogout);
@@ -191,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function showRanking() {
         rankingList.innerHTML = '<li>Carregando ranking...</li>';
-        rankingModal.classList.remove('hide');
         try {
             const { data, error } = await supabaseClient.from('ranking').select('nome_usuario, pontuacao').order('pontuacao', { ascending: false }).limit(10);
             if (error) throw error;
@@ -274,6 +268,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateUserUI(user) {
+        // Garante que o contêiner principal e a tela inicial estejam sempre visíveis
+        mainContainer.classList.remove('hide');
+        showStartScreen();
+
         if (user) {
             authContainer.classList.add('hide');
             userInfo.classList.remove('hide');
@@ -290,9 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
             splashScreen.classList.add('fade-out');
             setTimeout(() => {
                 splashScreen.remove();
-                mainContainer.classList.remove('hide');
                 topBar.classList.remove('hide');
-                showStartScreen();
+                showRanking(); // Call showRanking on init
             }, 500);
         }, 2500);
 
