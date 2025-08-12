@@ -17,6 +17,7 @@
   --cor-fundo: #121212;
   --cor-texto: #e4e6eb;
   --cor-caixa: #1e1e1e;
+  --cor-caixa-modal: #151515; /* Mais escuro para o modal */
   --cor-botao-borda: var(--cor-amarelo-tdf);
   --sombra-caixa: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
@@ -175,6 +176,7 @@ h2 {
     color: var(--cor-texto);
     padding: 10px 20px;
     font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
@@ -201,7 +203,8 @@ h2 {
 }
 
 .modal-content {
-  background-color: var(--cor-caixa);
+  background-color: var(--cor-caixa-modal);
+  color: #bbbbbb; /* Letras acinzentadas como pedido */
   padding: 30px 40px;
   border-radius: 15px;
   width: 90%;
@@ -275,7 +278,7 @@ h2 {
   min-height: 1.2em;
 }
 
-#ranking-list, #profile-scores-list {
+#ranking-list-main, #ranking-list, #profile-scores-list {
   list-style-type: none;
   padding-left: 0;
   margin-top: 15px;
@@ -286,15 +289,21 @@ h2 {
   padding: 15px;
 }
 
-#ranking-list li, #profile-scores-list li {
+#ranking-list-main li, #ranking-list li, #profile-scores-list li {
+  background-color: rgba(255, 255, 255, 0.05);
   margin-bottom: 10px;
+  padding: 12px 15px;
+  border-radius: 6px;
   font-size: 1.1rem;
-  border-bottom: 1px solid var(--cor-botao-borda);
-  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
 }
 
-#ranking-list li:last-child, #profile-scores-list li:last-child {
-    border-bottom: none;
+#ranking-list-main li:hover, #ranking-list li:hover, #profile-scores-list li:hover {
+    transform: scale(1.03);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* --- Tela de Splash --- */
@@ -338,3 +347,22 @@ h2 {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animações de entrada para a tela de introdução */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+  opacity: 0;
+}
+
+.fade-in.delay-1 { animation-delay: 0.2s; }
+.fade-in.delay-2 { animation-delay: 0.4s; }
+.fade-in.delay-3 { animation-delay: 0.6s; }
+.fade-in.delay-4 { animation-delay: 0.8s; }

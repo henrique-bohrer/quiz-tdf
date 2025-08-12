@@ -268,10 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateUserUI(user) {
-        // Garante que o contêiner principal e a tela inicial estejam sempre visíveis
-        mainContainer.classList.remove('hide');
-        showStartScreen();
-
         if (user) {
             authContainer.classList.add('hide');
             userInfo.classList.remove('hide');
@@ -288,8 +284,10 @@ document.addEventListener('DOMContentLoaded', () => {
             splashScreen.classList.add('fade-out');
             setTimeout(() => {
                 splashScreen.remove();
+                mainContainer.classList.remove('hide');
                 topBar.classList.remove('hide');
-                showRanking(); // Call showRanking on init
+                showStartScreen();
+                showRanking();
             }, 500);
         }, 2500);
 
